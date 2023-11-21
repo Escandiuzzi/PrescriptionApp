@@ -14,6 +14,7 @@
 		27896AA12B0BA911004347C7 /* PrescriptionAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27896AA02B0BA911004347C7 /* PrescriptionAppTests.swift */; };
 		27896AAB2B0BA911004347C7 /* PrescriptionAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27896AAA2B0BA911004347C7 /* PrescriptionAppUITests.swift */; };
 		27896AAD2B0BA911004347C7 /* PrescriptionAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27896AAC2B0BA911004347C7 /* PrescriptionAppUITestsLaunchTests.swift */; };
+		27896ABF2B0BDCD2004347C7 /* prescription.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 27896ABC2B0BB42B004347C7 /* prescription.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		27896AA62B0BA911004347C7 /* PrescriptionAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrescriptionAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27896AAA2B0BA911004347C7 /* PrescriptionAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionAppUITests.swift; sourceTree = "<group>"; };
 		27896AAC2B0BA911004347C7 /* PrescriptionAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		27896ABC2B0BB42B004347C7 /* prescription.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = prescription.pdf; sourceTree = "<group>"; };
+		27896AC02B0D27A1004347C7 /* PrescriptionApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrescriptionApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,7 @@
 		27896A832B0BA90F004347C7 = {
 			isa = PBXGroup;
 			children = (
+				27896AB92B0BB3C4004347C7 /* Resources */,
 				27896A8E2B0BA90F004347C7 /* PrescriptionApp */,
 				27896A9F2B0BA911004347C7 /* PrescriptionAppTests */,
 				27896AA92B0BA911004347C7 /* PrescriptionAppUITests */,
@@ -94,6 +98,7 @@
 		27896A8E2B0BA90F004347C7 /* PrescriptionApp */ = {
 			isa = PBXGroup;
 			children = (
+				27896AC02B0D27A1004347C7 /* PrescriptionApp.entitlements */,
 				27896A8F2B0BA90F004347C7 /* PrescriptionAppApp.swift */,
 				27896A912B0BA90F004347C7 /* ContentView.swift */,
 				27896A932B0BA911004347C7 /* Assets.xcassets */,
@@ -125,6 +130,14 @@
 				27896AAC2B0BA911004347C7 /* PrescriptionAppUITestsLaunchTests.swift */,
 			);
 			path = PrescriptionAppUITests;
+			sourceTree = "<group>";
+		};
+		27896AB92B0BB3C4004347C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27896ABC2B0BB42B004347C7 /* prescription.pdf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27896ABF2B0BDCD2004347C7 /* prescription.pdf in Resources */,
 				27896A972B0BA911004347C7 /* Preview Assets.xcassets in Resources */,
 				27896A942B0BA911004347C7 /* Assets.xcassets in Resources */,
 			);
@@ -419,9 +433,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PrescriptionApp/PrescriptionApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PrescriptionApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 8JEVTNQ4CK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -447,9 +463,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PrescriptionApp/PrescriptionApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PrescriptionApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 8JEVTNQ4CK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
