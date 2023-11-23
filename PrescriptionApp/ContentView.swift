@@ -8,22 +8,6 @@
 import SwiftUI
 import PDFKit
 
-struct ActivityViewController: UIViewControllerRepresentable {
-    @Binding var url: String
-    var activityItems: [Any] {
-        [URL(string: url)!]
-    }
-    var applicationActivities: [UIActivity]? = nil
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
-    
-}
-
 struct ContentView: View {
     @State private var name: String = ""
     @State private var prescription: String = ""
@@ -96,15 +80,6 @@ struct ContentView: View {
             }
             .padding()
             
-            Button("Share file") {
-                self.isSharePresented = true
-            }
-            .sheet(isPresented: $isSharePresented, onDismiss: {
-                print("Dismiss")
-            }, content: {
-                ActivityViewController(url: $fileUrl)
-            })
-            
         }
         .padding()
     }
@@ -155,7 +130,7 @@ struct ContentView: View {
                 // Draw the existing PDF content
                 page.draw(with: .mediaBox, to: UIGraphicsGetCurrentContext()!)
                 
-                drawText(x: 130, y: 621, text: name)
+                drawText(x: 130, y: 622, text: name)
                 drawText(x: 140, y: 570, text: prescription)
                 drawText(x: 94, y: 380, text: date)
                 
@@ -169,6 +144,15 @@ struct ContentView: View {
                     do {
                         try pdfData.write(toFile: fileUrl, options: .atomic)
                         print("PDF saved successfully at path: \(fileUrl)")
+                        
+                        
+                        // Present the document picker
+                        if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                            let savePanel = UIDocumentPickerViewController(forExporting: [URL(string: fileUrl)!], asCopy: true)
+                            savePanel.delegate = makeCoordinator()
+                            UIApplication.shared.windows.first?.rootViewController?.present(savePanel, animated: true, completion: nil)
+                        }
+                        
                     } catch {
                         print("Error saving PDF: \(error.localizedDescription)")
                     }
@@ -208,6 +192,36 @@ struct ContentView: View {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         let timestampString = dateFormatter.string(from: Date())
         return timestampString
+    }
+}
+
+extension ContentView {
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        var parent: ContentView
+        
+        init(parent: ContentView) {
+            self.parent = parent
+        }
+        
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            if let pickedURL = urls.first {
+                print("Picked document URL: \(pickedURL)")
+            }
+        }
+        
+        func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+            print("Document picker was cancelled")
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
 
